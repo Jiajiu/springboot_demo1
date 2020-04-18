@@ -14,6 +14,12 @@ public interface Constant {
     public static final Integer ERROR=-1;
 
     /**
+     * 默认密码
+     */
+    public static final String USER_DEFAULT_PWD="123456";
+
+
+    /**
      * 菜单权限类型
      */
     public static final String TYPE_MENU="menu";
