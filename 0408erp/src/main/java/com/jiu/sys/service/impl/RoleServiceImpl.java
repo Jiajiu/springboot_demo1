@@ -55,4 +55,14 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         }
 
     }
+
+    /**
+     * 根据用户id查询角色并选中已拥有的角色
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Integer> queryUserRoleByUid(Integer id) {
+        return this.getBaseMapper().queryUserRoleIdsByUid(id);
+    }
 }

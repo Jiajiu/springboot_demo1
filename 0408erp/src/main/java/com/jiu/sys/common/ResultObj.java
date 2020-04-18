@@ -27,8 +27,8 @@ public class ResultObj {
     public static final ResultObj DELETE_SUCCESS=new ResultObj(Constant.OK,"删除成功");
     public static final ResultObj DELETE_FAIL=new ResultObj(Constant.ERROR,"删除失败");
 
-    public static final ResultObj RESET_SUCCESS=new ResultObj(Constant.OK,"重置成功");
-    public static final ResultObj RESET_FAIL=new ResultObj(Constant.ERROR,"重置失败");
+    public static final ResultObj RESET_PWD_SUCCESS=new ResultObj(Constant.OK,"重置密码成功");
+    public static final ResultObj RESET_PWD_FAIL=new ResultObj(Constant.ERROR,"重置密码失败");
 
     public static final ResultObj DISPATCH_SUCCESS=new ResultObj(Constant.OK,"分配成功");
     public static final ResultObj DISPATCH_FAIL=new ResultObj(Constant.ERROR,"分配失败");
