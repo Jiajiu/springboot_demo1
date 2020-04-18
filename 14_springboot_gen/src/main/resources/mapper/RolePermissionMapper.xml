@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiu.mapper.RolePermissionMapper">
+  <resultMap id="BaseResultMap" type="com.jiu.domain.RolePermission">
+    <!--@mbg.generated-->
+    <!--@Table role_permission-->
+    <id column="perid" jdbcType="INTEGER" property="perid" />
+    <id column="roleid" jdbcType="INTEGER" property="roleid" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    <!--@mbg.generated-->
+    delete from role_permission
+    where perid = #{perid,jdbcType=INTEGER}
+      and roleid = #{roleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jiu.domain.RolePermission">
+    <!--@mbg.generated-->
+    insert into role_permission (perid, roleid)
+    values (#{perid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jiu.domain.RolePermission">
+    <!--@mbg.generated-->
+    insert into role_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="perid != null">
+        perid,
+      </if>
+      <if test="roleid != null">
+        roleid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="perid != null">
+        #{perid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null">
+        #{roleid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/0408erp/0408erp.iml" filepath="$PROJECT_DIR$/0408erp/0408erp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/08_springboot_tomcat/08_springboot_tomcat.iml" filepath="$PROJECT_DIR$/08_springboot_tomcat/08_springboot_tomcat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/09_springboot_datasource/09_springboot_datasource.iml" filepath="$PROJECT_DIR$/09_springboot_datasource/09_springboot_datasource.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10_springboot_druic_jdbctemplate/10_springboot_druic_jdbctemplate.iml" filepath="$PROJECT_DIR$/10_springboot_druic_jdbctemplate/10_springboot_druic_jdbctemplate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/11_springboot_mybatis1/11_springboot_mybatis1.iml" filepath="$PROJECT_DIR$/11_springboot_mybatis1/11_springboot_mybatis1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/12_springboot_swagger2/12_springboot_swagger2.iml" filepath="$PROJECT_DIR$/12_springboot_swagger2/12_springboot_swagger2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/13_springboot_shiro/13_springboot_shiro.iml" filepath="$PROJECT_DIR$/13_springboot_shiro/13_springboot_shiro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/14_springboot_gen/14_springboot_gen.iml" filepath="$PROJECT_DIR$/14_springboot_gen/14_springboot_gen.iml" />
+    </modules>
+  </component>
+</project>

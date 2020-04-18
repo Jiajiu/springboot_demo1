@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiu.sys.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.jiu.sys.domain.Role">
+    <!--@mbg.generated-->
+    <!--@Table sys_role-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="available" jdbcType="INTEGER" property="available" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, remark, available, createtime
+  </sql>
+
+<!--  根据角色Id删除sys_role_permission-->
+  <delete id="deleteRolePermissionByRid">
+    delete from sys_role_permission where rid=#{value}
+  </delete>
+
+<!--  根据角色Id删除sys_role_user-->
+  <delete id="deleteRoleUserByRid">
+    delete from sys_role_user where rid=#{value}
+  </delete>
+
+<!--  根据角色Id查询当前角色拥有的所有权限或菜单Id-->
+  <select id="queryRolePermissionIdsByRid" resultType="java.lang.Integer">
+    select pid from sys_role_permission where rid=#{value};
+  </select>
+
+  <insert id="saveRolePermission">
+    insert into sys_role_permission(rid,pid) values(#{rid},#{pid})
+  </insert>
+</mapper>
