@@ -63,20 +63,11 @@ public class LoginfoController {
         }
     }
 
-//    @RequestMapping("batchDeleteLoginfo")
-//    public ResultObj batchDeleteLoginfo(LoginfoVo loginfoVo){
-//        try{
-//            Collection<Serializable> idList=new ArrayList<Serializable>();
-//            for (Integer id : loginfoVo.getIds()) {
-//                idList.add(id);
-//            }
-//            this.loginfoService.removeByIds(idList);
-//            return ResultObj.DELETE_SUCCESS;
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return ResultObj.DELETE_FAIL;
-//        }
-//    }
+    /**
+     * 批量删除日志
+     * @param loginfoVo
+     * @return
+     */
     @RequestMapping("batchDeleteLoginfo")
     public ResultObj batchDeleteLoginfo(LoginfoVo loginfoVo) {
         try {

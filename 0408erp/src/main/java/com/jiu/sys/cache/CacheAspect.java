@@ -34,6 +34,10 @@ public class CacheAspect {
      */
     private Map<String,Object> CACHE_CONTAINER=new HashMap<>();
 
+    public Map<String, Object> getCACHE_CONTAINER() {
+        return CACHE_CONTAINER;
+    }
+
     /**
      * 声明部门切面表达式
      */

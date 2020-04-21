@@ -40,7 +40,7 @@ spring:
 #    classpath:mapper/*Mapper.xml
 mybatis-plus:
   mapper-locations:
-    classpath:mapper/*Mapper.xml
+    classpath:mapper/*/*Mapper.xml
   global-config:
     db-config:
       id-type: auto

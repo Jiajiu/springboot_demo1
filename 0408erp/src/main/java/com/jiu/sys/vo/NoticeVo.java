@@ -19,7 +19,10 @@ public class NoticeVo extends Notice {
     private Integer page=1;
     private Integer limit=10;
 
-    private Integer[] ids;//接收多个id
+    /**
+     * 接收多个id
+     */
+    private Integer[] ids;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date startTime;
