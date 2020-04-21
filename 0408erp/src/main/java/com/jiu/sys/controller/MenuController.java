@@ -7,16 +7,14 @@ import com.jiu.sys.common.*;
 import com.jiu.sys.domain.Permission;
 import com.jiu.sys.domain.User;
 import com.jiu.sys.service.PermissionService;
+import com.jiu.sys.service.RoleService;
 import com.jiu.sys.vo.PermissionVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.jiu.sys.controller.PermissionController.getDataGridView;
 
@@ -34,6 +32,9 @@ public class MenuController {
     @Autowired
     private PermissionService permissionService;
 
+    @Autowired
+    private RoleService roleService;
+
     @RequestMapping("loadIndexLeftMenuJson")
     public DataGridView loadIndexLeftMenuJson(PermissionVo permissionVo){
         //查询所有菜单
@@ -47,7 +48,23 @@ public class MenuController {
             list = permissionService.list(queryWrapper);
         }else {
             //根据用户id+角色+权限去查询
-            list = permissionService.list(queryWrapper);
+            Integer userId=user.getId();
+            //根据用户id查询角色
+            List<Integer> currentUserRoleIds = roleService.queryUserRoleByUid(userId);
+            //根据角色id得到菜单id
+            Set<Integer> pids=new HashSet<>();
+            for (Integer rid : currentUserRoleIds) {
+                List<Integer> permissionIds = roleService.queryRolePermissionIdsByRid(rid);
+                pids.addAll(permissionIds);
+            }
+            //根据菜单id得到菜单
+            if(pids.size()>0){
+                queryWrapper.in("id",pids);
+                list=permissionService.list(queryWrapper);
+            }else {
+                list=new ArrayList<>();
+            }
+
         }
         List<TreeNode> treeNodes=new ArrayList<>();
         for (Permission p : list) {
