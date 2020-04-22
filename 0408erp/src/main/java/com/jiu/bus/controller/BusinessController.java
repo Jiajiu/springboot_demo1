@@ -29,4 +29,13 @@ public class BusinessController {
     public String toProvicderManager(){
         return "business/provider/providerManager";
     }
+
+    /**
+     * 跳转到商品管理
+     * @return
+     */
+    @RequestMapping("toGoodsManager")
+    public String toGoodsManager(){
+        return "business/goods/goodsManager";
+    }
 }

@@ -42,4 +42,14 @@ public interface Constant {
      */
     public static final Integer OPEN_TRUE=1;
     public static final Integer OPEN_FALSE=0;
+
+    /**
+     * 临时文件标记
+     */
+    public static final String FILE_UPLOAD_TEMP ="_temp";
+
+    /**
+     * 默认图片地址
+     */
+    public static final String DEFAULT_GOODS_IMG = "images/defaultgoodsimg.jpg";
 }

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jiu.bus.domain.Provider;
 import com.jiu.bus.service.ProviderService;
 import com.jiu.bus.vo.ProviderVo;
+import com.jiu.sys.common.Constant;
 import com.jiu.sys.common.DataGridView;
 import com.jiu.sys.common.ResultObj;
 import org.apache.commons.lang3.StringUtils;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @ClassName ProviderController
@@ -113,6 +115,17 @@ public class ProviderController {
             return ResultObj.DELETE_FAIL;
         }
     }
-    
+
+    /**
+     * 加载查询条件供应商的下拉列表
+     * @return
+     */
+    @RequestMapping("loadAllProviderForSelect")
+    public DataGridView loadAllProviderForSelect(){
+        QueryWrapper<Provider> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("available", Constant.AVAILABLE_TRUE);
+        List<Provider> list = this.providerService.list(queryWrapper);
+        return new DataGridView(list);
+    }
 
 }
