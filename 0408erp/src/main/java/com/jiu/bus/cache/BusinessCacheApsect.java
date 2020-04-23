@@ -267,7 +267,7 @@ public class BusinessCacheApsect {
     private static final String POINTCUT_GOODS_GET = "execution(* com.jiu.bus.service.impl.GoodsServiceImpl.getById(..))";
     private static final String POINTCUT_GOODS_DELETE = "execution(* com.jiu.bus.service.impl.GoodsServiceImpl.removeById(..))";
 
-    private static final String CACHE_GOODS_PREFIX = "provider:";
+    private static final String CACHE_GOODS_PREFIX = "goods:";
 
     /**
      * 商品添加切入
@@ -315,16 +315,16 @@ public class BusinessCacheApsect {
     @Around(value = POINTCUT_GOODS_UPDATE)
     public Object cacheGoodsUpdate(ProceedingJoinPoint joinPoint) throws Throwable {
         // 取出第一个参数
-        Goods deptVo = (Goods) joinPoint.getArgs()[0];
+        Goods goodsVo = (Goods) joinPoint.getArgs()[0];
         Boolean isSuccess = (Boolean) joinPoint.proceed();
         if (isSuccess) {
-            Goods dept = (Goods) CACHE_CONTAINER.get(CACHE_GOODS_PREFIX + deptVo.getId());
-            if (null == dept) {
-                dept = new Goods();
+            Goods goods = (Goods) CACHE_CONTAINER.get(CACHE_GOODS_PREFIX + goodsVo.getId());
+            if (null == goods) {
+                goods = new Goods();
             }
-            BeanUtils.copyProperties(deptVo, dept);
-            log.info("商品对象缓存已更新" + CACHE_GOODS_PREFIX + deptVo.getId());
-            CACHE_CONTAINER.put(CACHE_GOODS_PREFIX + dept.getId(), dept);
+            BeanUtils.copyProperties(goodsVo, goods);
+            log.info("商品对象缓存已更新" + CACHE_GOODS_PREFIX + goodsVo.getId());
+            CACHE_CONTAINER.put(CACHE_GOODS_PREFIX + goods.getId(), goods);
         }
         return isSuccess;
     }

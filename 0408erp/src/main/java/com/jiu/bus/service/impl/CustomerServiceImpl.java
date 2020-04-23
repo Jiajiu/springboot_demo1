@@ -16,7 +16,7 @@ import java.util.Collection;
  * @Create 2020/4/21 17:05
  **/
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> implements CustomerService{
 
     @Override

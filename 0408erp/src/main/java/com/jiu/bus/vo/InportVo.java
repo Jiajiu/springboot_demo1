@@ -1,6 +1,6 @@
-package com.jiu.sys.vo;
+package com.jiu.bus.vo;
 
-import com.jiu.sys.domain.Loginfo;
+import com.jiu.bus.domain.Inport;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -8,21 +8,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 /**
- * @ClassName LoginfoVo
+ * @ClassName InportVo
  * @Author Jiu
- * @Create 2020/4/9 16:44
+ * @Create 2020/4/23 9:59
  **/
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class LoginfoVo extends Loginfo {
+public class InportVo extends Inport {
 
     private Integer page=1;
     private Integer limit=10;
-
-    /**
-     * 接收多个Id
-     */
-    private Integer[] ids;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date startTime;

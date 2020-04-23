@@ -32,8 +32,9 @@ public class PinyinUtils {
                     if (java.lang.Character.toString(input[i]).matches("[\\u4E00-\\u9FA5]+")) {
                         String[] temp = PinyinHelper.toHanyuPinyinStringArray(input[i], format);
                         output += temp[0];
-                    } else
+                    } else{
                         output += java.lang.Character.toString(input[i]);
+                    }
                 }
             } catch (BadHanyuPinyinOutputFormatCombination e) {
                 e.printStackTrace();

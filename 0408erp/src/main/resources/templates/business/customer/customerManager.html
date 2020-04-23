@@ -28,18 +28,20 @@
                 <div class="layui-input-inline">
                     <input type="text" name="customername"  autocomplete="off" class="layui-input">
                 </div>
+            </div>
+            <div class="layui-inline">
                 <label class="layui-form-label">联系人电话</label>
                 <div class="layui-input-inline">
                     <input type="text" name="phone"  autocomplete="off" class="layui-input">
                 </div>
+            </div>
+            <div class="layui-inline">
                 <label class="layui-form-label">联系人</label>
                 <div class="layui-input-inline">
                     <input type="text" name="connectionperson"  autocomplete="off" class="layui-input">
                 </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block" style="text-align: center">
+            <div class="layui-inline">
                 <button type="button" class="layui-btn" lay-submit="" lay-filter="doSearch"><span class="layui-icon layui-icon-search"></span>查询</button>
                 <button type="reset" class="layui-btn layui-btn-warm"><span class="layui-icon layui-icon-refresh-1"></span>重置</button>
 
@@ -181,7 +183,7 @@
             ,url:'/customer/loadAllCustomer'
             ,toolbar: '#customerToolBar' //开启头部工具栏，并为其绑定左侧模板
             ,title: '客户数据表'
-            ,height:'full-220'
+            ,height:'full-170'
             ,page: true
             ,cols: [ [
                 {type:'checkbox',align:'center'}

@@ -108,6 +108,12 @@ public class GoodsController {
         }
     }
 
+    /**
+     * 删除商品（根据id)
+     * @param id
+     * @param goodsimg
+     * @return
+     */
     @RequestMapping("deleteGoods")
     public ResultObj deleteGoods(Integer id,String goodsimg){
         try{
@@ -119,5 +125,43 @@ public class GoodsController {
             e.printStackTrace();
             return ResultObj.DELETE_FAIL;
         }
+    }
+
+    /**
+     * 加载查询条件可用商品的下拉列表
+     * @return
+     */
+    @RequestMapping("loadAllGoodsForSelect")
+    public DataGridView loadAllGoodsForSelect(){
+        QueryWrapper<Goods> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("available", Constant.AVAILABLE_TRUE);
+        List<Goods> list = this.goodsService.list(queryWrapper);
+        for (Goods goods : list) {
+            Provider provider=this.providerService.getById(goods.getProviderid());
+            if(null!=provider){
+                goods.setProvidername(provider.getProvidername());
+            }
+        }
+        return new DataGridView(list);
+    }
+
+    /**
+     * 根据供应商id查询商品信息
+     * @param providerid
+     * @return
+     */
+    @RequestMapping("loadGoodsByProviderId")
+    public DataGridView loadGoodsByProviderId(Integer providerid){
+        QueryWrapper<Goods> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("available",Constant.AVAILABLE_TRUE);
+        queryWrapper.eq(providerid!=null,"providerid",providerid);
+        List<Goods> list = this.goodsService.list(queryWrapper);
+        for (Goods goods : list) {
+            Provider provider=this.providerService.getById(goods.getProviderid());
+            if(null!=provider){
+                goods.setProvidername(provider.getProvidername());
+            }
+        }
+        return new DataGridView(list);
     }
 }
