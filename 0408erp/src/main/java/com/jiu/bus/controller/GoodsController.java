@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jiu.bus.domain.Goods;
 import com.jiu.bus.domain.Provider;
+import com.jiu.bus.service.CustomerService;
 import com.jiu.bus.service.GoodsService;
 import com.jiu.bus.service.ProviderService;
 import com.jiu.bus.vo.GoodsVo;
@@ -34,6 +35,9 @@ public class GoodsController {
 
     @Autowired
     private ProviderService providerService;
+
+    @Autowired
+    private CustomerService customerService;
 
     /**
      * 加载全部的商品
@@ -164,4 +168,6 @@ public class GoodsController {
         }
         return new DataGridView(list);
     }
+
+
 }

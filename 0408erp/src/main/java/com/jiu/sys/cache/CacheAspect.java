@@ -11,7 +11,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -32,11 +31,7 @@ public class CacheAspect {
     /**
      * 声明一个缓存容器
      */
-    private Map<String,Object> CACHE_CONTAINER=new HashMap<>();
-
-    public Map<String, Object> getCACHE_CONTAINER() {
-        return CACHE_CONTAINER;
-    }
+    private Map<String,Object> CACHE_CONTAINER=CachePool.CACHE_CONTAINER;
 
     /**
      * 声明部门切面表达式

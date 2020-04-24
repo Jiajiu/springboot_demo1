@@ -3,6 +3,7 @@ package com.jiu.bus.cache;
 import com.jiu.bus.domain.Customer;
 import com.jiu.bus.domain.Goods;
 import com.jiu.bus.domain.Provider;
+import com.jiu.sys.cache.CachePool;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -36,7 +36,7 @@ public class BusinessCacheApsect {
     /**
      * 声明一个缓存容器
      */
-    private static Map<String,Object> CACHE_CONTAINER=new HashMap<>();
+    private static Map<String,Object> CACHE_CONTAINER= CachePool.CACHE_CONTAINER;
 
 
     /**

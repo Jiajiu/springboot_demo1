@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jiu.bus.domain.Customer;
 import com.jiu.bus.service.CustomerService;
 import com.jiu.bus.vo.CustomerVo;
+import com.jiu.sys.common.Constant;
 import com.jiu.sys.common.DataGridView;
 import com.jiu.sys.common.ResultObj;
 import org.apache.commons.lang3.StringUtils;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @ClassName CustomerController
@@ -111,5 +113,17 @@ public class CustomerController {
             e.printStackTrace();
             return ResultObj.DELETE_FAIL;
         }
+    }
+
+    /**
+     * 加载查询条件客户的下拉列表
+     * @return
+     */
+    @RequestMapping("loadAllCustomerForSelect")
+    public DataGridView loadAllCustomerForSelect(){
+        QueryWrapper<Customer> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("available", Constant.AVAILABLE_TRUE);
+        List<Customer> list = this.customerService.list(queryWrapper);
+        return new DataGridView(list);
     }
 }

@@ -250,4 +250,13 @@ public class UserController {
             return ResultObj.DISPATCH_FAIL;
         }
     }
+
+    /**
+     * 修改密码
+     * @return
+     */
+    @RequestMapping("changePwd")
+    public ResultObj changePwd(){
+        return ResultObj.OPERATE_SUCCESS;
+    }
 }

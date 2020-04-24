@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>商品退货管理</title>
+    <title>销售退货管理</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
@@ -24,10 +24,10 @@
     <form action="" method="post" id="searchFrm" lay-filter="searchFrm" class="layui-form layui-form-pane">
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label">供应商</label>
+                <label class="layui-form-label">客户</label>
                 <div class="layui-input-inline">
-                    <select name="providerid" id="search_providerid">
-                        <option value="0">请选择供应商</option>
+                    <select name="customerid" id="search_customerid">
+                        <option value="0">请选择客户</option>
                     </select>
                 </div>
             </div>
@@ -77,12 +77,12 @@
 
 <!-- 数据表格开始 -->
 <div>
-    <table class="layui-hide" id="outportTable" lay-filter="outportTable"></table>
-    <div id="outportToolBar" style="display: none;">
+    <table class="layui-hide" id="saleBackTable" lay-filter="saleBackTable"></table>
+    <div id="saleBackToolBar" style="display: none;">
         <button type="button" lay-event="batchDelete" class="layui-btn layui-btn-sm layui-btn-danger"><span class="layui-icon layui-icon-delete"></span>批量删除</button>
     </div>
 
-    <div id="outportRowBar" style="display: none;">
+    <div id="saleBackRowBar" style="display: none;">
         <button type="button" lay-event="delete" class="layui-btn layui-btn-sm layui-btn-danger"><span class="layui-icon layui-icon-delete"></span>删除</button>
     </div>
 </div>
@@ -110,24 +110,24 @@
         })
         //加载 数据
         tableIns=table.render({
-            elem: '#outportTable'
-            ,url:'/outport/loadAllOutport'
-            ,toolbar: '#outportToolBar' //开启头部工具栏，并为其绑定左侧模板
-            ,title: '退货数据表'
+            elem: '#saleBackTable'
+            ,url:'/salesBack/loadAllSalesBack'
+            ,toolbar: '#saleBackToolBar' //开启头部工具栏，并为其绑定左侧模板
+            ,title: '销售数据表'
             ,height:'full-230'
             ,page: true
             ,cols: [ [
                 {type:'checkbox',align:'center'}
-                ,{field:'id', title:'退货ID',align:'center'}
-                ,{field:'providername', title:'供应商',align:'center'}
-                ,{field:'goodsname', title:'商品名称',align:'center'}
-                ,{field:'size', title:'商品规格',align:'center'}
-                ,{field:'outporttime', title:'退货时间',align:'center'}
-                ,{field:'number', title:'退货数量',align:'center'}
-                ,{field:'outportprice', title:'退货价格',align:'center'}
-                ,{field:'remark', title:'备注',align:'center'}
-                ,{field:'operateperson', title:'操作员',align:'center'}
-                ,{fixed: 'right', title:'操作', toolbar: '#outportRowBar',align:'center'}
+                ,{field:'id', title:'销售ID',align:'center',width:'7%'}
+                ,{field:'customername', title:'客户名',align:'center',width:'10%'}
+                ,{field:'goodsname', title:'商品名称',align:'center',width:'10%'}
+                ,{field:'size', title:'商品规格',align:'center',width:'7%'}
+                ,{field:'salesbacktime', title:'退货时间',align:'center',width:'14%'}
+                ,{field:'number', title:'退货数量',align:'center',width:'7%'}
+                ,{field:'salebackprice', title:'退货价格',align:'center',width:'7%'}
+                ,{field:'remark', title:'备注',align:'center',width:'14%'}
+                ,{field:'operateperson', title:'操作员',align:'center',width:'10%'}
+                ,{fixed: 'right', title:'操作', toolbar: '#saleBackRowBar',align:'center',width:'14%'}
             ] ]
             ,done: function(res, curr, count){ //处理删除某一页最后一条数据的BUG
                 if(res.data.length==0&&curr!=1){
@@ -140,19 +140,19 @@
             }
         });
 
-        //加载查询条件供应商的下拉列表
-        $.get("/provider/loadAllProviderForSelect",function (res) {
+        //加载查询客户的下拉列表
+        $.get("/customer/loadAllCustomerForSelect",function (res) {
             var data=res.data;
-            var dom=$("#search_providerid");
-            var html='<option value="0">请选择供应商</option>';
+            var dom=$("#search_customerid");
+            var html='<option value="0">请选择客户</option>';
             $.each(data,function (index, item) {
-                html+='<option value="'+item.id+'">'+item.providername+'</option>'
+                html+='<option value="'+item.id+'">'+item.customername+'</option>'
             });
             dom.html(html);
             form.render("select");
         });
 
-        //加载查询条件商品的下拉列表
+        //加载查询商品的下拉列表
         $.get("/goods/loadAllGoodsForSelect",function (res) {
             var data=res.data;
             var dom=$("#search_goodsid");
@@ -176,7 +176,7 @@
         });
 
         //监听工具条的事件
-        table.on("toolbar(outportTable)",function(obj){
+        table.on("toolbar(saleBackTable)",function(obj){
             switch(obj.event){
                 case 'batchDelete':
                     batchDelete();
@@ -185,18 +185,18 @@
         });
 
         //监听行工具条的事件
-        table.on("tool(outportTable)",function(obj){
+        table.on("tool(saleBackTable)",function(obj){
             var data = obj.data; //获得当前行数据
             switch(obj.event){
                 case 'delete':
-                    deleteOutport(data);
+                    deleteSaleBack(data);
                     break;
             };
         });
 
         function batchDelete(data) {
             //得到选中行
-            var checkStatus = table.checkStatus('outportTable');
+            var checkStatus = table.checkStatus('saleBackTable');
             var dataLength=checkStatus.data.length;
             if(dataLength>0){
                 layer.confirm('你确定要删除选中的这些退货单数据吗?', {icon: 3, title:'提示'}, function(index){
@@ -209,7 +209,7 @@
                             ids+="&ids="+item.id;
                         }
                     })
-                    $.post("/outport/batchDeleteOutport",ids,function(res){
+                    $.post("/saleBack/batchDeleteSaleBack",ids,function(res){
                         if(res.code==200){
                             tableIns.reload();
                         }
@@ -223,9 +223,9 @@
             }
         }
         //删除
-        function deleteOutport(data){
+        function deleteSaleBack(data){
             layer.confirm('你确定要删除这个【'+data.goodsname+'】退货商品吗?', {icon: 3, title:'提示'}, function(index){
-                $.post("/outport/deleteOutport",{id:data.id},function(res){
+                $.post("/saleBack/deleteSaleBack",{id:data.id},function(res){
                     if(res.code==200){
                         tableIns.reload();
                     }

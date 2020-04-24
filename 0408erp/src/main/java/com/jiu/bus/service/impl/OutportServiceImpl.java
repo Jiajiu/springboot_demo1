@@ -14,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -58,16 +56,6 @@ public class OutportServiceImpl extends ServiceImpl<OutportMapper, Outport> impl
         entity.setProviderid(inport.getProviderid());
         entity.setRemark(remark);
         this.getBaseMapper().insert(entity);
-    }
-
-    @Override
-    public boolean removeById(Serializable id) {
-        return super.removeById(id);
-    }
-
-    @Override
-    public boolean removeByIds(Collection<? extends Serializable> idList) {
-        return super.removeByIds(idList);
     }
 
 }
